@@ -1,2 +1,6 @@
 jupyterlab
+matplotlib
+pandas
+seaborn
 tensorflow==2.1.0
+
