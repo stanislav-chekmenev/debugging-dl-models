@@ -1,0 +1,430 @@
+<html>
+<head>
+<title>Ill-Conditioning in Neural Networks</title>
+</head>
+<body>
+<h1>Ill-Conditioning in Neural Networks</h1>
+<h4>Warren S. Sarle, SAS Institute Inc., Cary, NC, USA</h4>
+Sep 5, 1999<p>
+Copyright 1999 by Warren S. Sarle, Cary, NC, USA<p>
+URL: ftp://ftp.sas.com/pub/neural/illcond/illcond.html<p>
+
+Numerical condition is one of the most fundamental and important
+concepts in numerical analysis. Numerical condition affects the
+speed and accuracy of most numerical algorithms. Numerical
+condition is especially important in the study of neural networks
+because ill-conditioning is a common cause of slow and inaccurate
+results from backprop-type algorithms. <p>
+
+Numerical condition is most commonly measured via the condition number,
+which for a neural network is the ratio of the largest and smallest
+eigenvalues of the Hessian matrix (i.e., the matrix of second-order
+partial derivatives of the error function with respect to the weights
+and biases). A condition number of 1.0 represents the best possible
+numerical condition. The higher the condition number, the worse the
+numerical condition. <p>
+
+First, let's consider a network that is simple enough to plot the
+results: one input, no hidden units, one linear output with bias, and a
+least-squares error function, i.e., simple linear regression.  The error
+surface for linear regression is quadratic--a multidimensional parabola.
+A quadratic surface has a constant Hessian and therefore a constant
+condition number. If the inputs are arranged in an <tt>n</tt> (cases) by
+<tt>p</tt> (variables) matrix <tt>X,</tt> the Hessian is proportional to
+<tt>X'X,</tt> where the apostrophe indicates transposition. If an output
+bias is used, <tt>X</tt> should contain a column of ones representing
+the bias unit.  The eigenvalues of <tt>X'X</tt> are the squares of the
+singular values of <tt>X.</tt> <p>
+
+The examples below use three training sets with four cases each,
+as shown in the following table.
+All of the training sets are related by affine transformations
+and have the same minimum MSE of .075. The data were used exactly
+as shown--no centering, standardization, normalization, or rescaling
+was performed, since such operations would affect the condition.<p>
+
+<table border>
+<caption align=top>Training Data</caption>
+<tr> <th>Condition:</th> <th colspan=2>Good</th> <th colspan=2>Fair</th>  <th colspan=2>Ill</th> </tr>
+<tr> <th rowspan=5></th> <th align=right>Input</th> <th align=right>Target</th> <th align=right>Input</th> <th align=right>Target</th> <th align=right>Input</th> <th align=right>Target</th> </tr>
+<tr> <td align=right>-1.5</td> <td align=right>1</td>     <td align=right>0</td> <td align=right>3</td>     <td align=right>10</td> <td align=right>23</td> </tr>
+<tr> <td align=right>-0.5</td> <td align=right>2</td>     <td align=right>1</td> <td align=right>4</td>     <td align=right>11</td> <td align=right>24</td> </tr>
+<tr> <td align=right> 0.5</td> <td align=right>4</td>     <td align=right>2</td> <td align=right>6</td>     <td align=right>12</td> <td align=right>26</td> </tr>
+<tr> <td align=right> 1.5</td> <td align=right>6</td>     <td align=right>3</td> <td align=right>8</td>     <td align=right>13</td> <td align=right>28</td> </tr>
+<tr> <td>Max Eigenvalue</td>   <td colspan=2 align=right>5.00</td> <td colspan=2 align=right>16.810</td> <td colspan=2 align=right>  537.963</td> </tr>
+<tr> <td>Min Eigenvalue</td>   <td colspan=2 align=right>4.00</td> <td colspan=2 align=right> 1.190</td> <td colspan=2 align=right>    0.037</td> </tr>
+<tr> <td>Condition Number</td> <td colspan=2 align=right>1.25</td> <td colspan=2 align=right>14.129</td> <td colspan=2 align=right>14470.200</td> </tr>
+
+</table>
+<p>
+
+The following table shows the effect of good, fair, and ill
+conditioning on various algorithms commonly used for training neural
+networks.  Each number in the table is the number of iterations the
+training algorithm required to achieve an MSE of .07575, i.e., within
+1% of the minimum MSE of .075. The number of iterations can be
+compared across rows of the table to see the effect of numerical
+condition.  You can also compare the number of iterations required for
+different learning rates and momentum values for backprop.  However,
+the number of iterations cannot be used to compare the speed of
+different kinds of algorithms, since the algorithms differ widely in
+the amount of time taken on each iteration.
+<p>
+
+Since there are only two weights including the bias, the progress of
+training can be shown in a plot with the input-output weight on the
+vertical axis and the bias on the horizontal axis. Blue shading is
+used in each plot to show the approximate value of the root MSE.  Each
+dot on the plot represents the weights on one iteration. The initial
+values are zero. Click on any of the iteration numbers to see the
+corresponding plot. <p>
+
+Training was done with the SAS Enterprise Miner software solution.
+The default settings were used for all options except learning rate
+and momentum. <p>
+
+<table border>
+<caption align=top>Number of Iterations to Within 1% of Minimum MSE for Linear Regression</caption>
+<tr> <th rowspan=2>Training Algorithm</th> <th colspan=3>Condition</th> <th rowspan=2 align=left>Comments</th> </tr>
+<tr>                                 <th align=right>Good</th>                                                <th align=right>Fair</th>                                                 <th align=right>Ill</th>     </tr>
+<tr> <td>&nbsp;</td> </tr>
+<tr> <td>Backprop Momentum=0</td> </tr>
+<tr> <td>Learning Rate=.001</td>    <td align=right><a href="cond_good_BProp_Learn=.001_Mom=1e-20.gif">2394</a></td>    <td align=right><a href="cond_fair_BProp_Learn=.001_Mom=1e-20.gif">5934</a></td>     <td align=right><a href="cond_ill_BProp_Learn=.001_Mom=1e-20.gif">&gt;10000</a></td> <td>MSE after 10000 iterations: 0.2712</td>  </tr>
+<tr> <td>Learning Rate=.002</td>    <td align=right><a href="cond_good_BProp_Learn=.002_Mom=1e-20.gif">1196</a></td>    <td align=right><a href="cond_fair_BProp_Learn=.002_Mom=1e-20.gif">2971</a></td>     <td align=right><a href="cond_ill_BProp_Learn=.002_Mom=1e-20.gif">&gt;10000</a></td> <td>MSE after 10000 iterations: 0.2103 </td> </tr>
+<tr> <td>Learning Rate=.005</td>    <td align=right><a href="cond_good_BProp_Learn=.005_Mom=1e-20.gif"> 477</a></td>    <td align=right><a href="cond_fair_BProp_Learn=.005_Mom=1e-20.gif">1188</a></td>     <td align=right><a href="cond_ill_BProp_Learn=.005_Mom=1e-20.gif">&gt;10000</a></td> <td>MSE after 10000 iterations: 0.1193 </td> </tr>
+<tr> <td>Learning Rate=.01 </td>    <td align=right><a href="cond_good_BProp_Learn=.01_Mom=1e-20.gif">  238</a></td>    <td align=right><a href="cond_fair_BProp_Learn=.01_Mom=1e-20.gif">  593</a></td>     <td align=right>                                                  diverged     </td> </tr>
+<tr> <td>Learning Rate=.02 </td>    <td align=right><a href="cond_good_BProp_Learn=.02_Mom=1e-20.gif">  118</a></td>    <td align=right><a href="cond_fair_BProp_Learn=.02_Mom=1e-20.gif">  296</a></td>     <td align=right>                                                  diverged     </td> </tr>
+<tr> <td>Learning Rate=.05 </td>    <td align=right><a href="cond_good_BProp_Learn=.05_Mom=1e-20.gif">   46</a></td>    <td align=right><a href="cond_fair_BProp_Learn=.05_Mom=1e-20.gif">  118</a></td>     <td align=right>                                                  diverged     </td> </tr>
+<tr> <td>Learning Rate=.1  </td>    <td align=right><a href="cond_good_BProp_Learn=.1_Mom=1e-20.gif">    22</a></td>    <td align=right><a href="cond_fair_BProp_Learn=.1_Mom=1e-20.gif">    58</a></td>     <td align=right>                                                  diverged     </td> </tr>
+<tr> <td>Learning Rate=.2  </td>    <td align=right><a href="cond_good_BProp_Learn=.2_Mom=1e-20.gif">    10</a></td>    <td align=right><a href="cond_fair_BProp_Learn=.2_Mom=1e-20.gif">    28</a></td>     <td align=right>                                                  diverged     </td> </tr>
+<tr> <td>Learning Rate=.5  </td>    <td align=right><a href="cond_good_BProp_Learn=.5_Mom=1e-20.gif">     4</a></td>    <td align=right>                                               diverged    </td>     <td align=right>                                                  diverged     </td> </tr>
+<tr> <td>&nbsp;</td> </tr>
+<tr> <td>Backprop Momentum=.9</td> </tr>
+<tr> <td>Learning Rate=.001</td>    <td align=right><a href="cond_good_BProp_Learn=.001.gif">194</a></td>    <td align=right><a href="cond_fair_BProp_Learn=.001.gif">569</a></td>     <td align=right><a href="cond_ill_BProp_Learn=.001.gif">&gt;10000</a></td> <td>MSE after 10000 iterations: 0.0819 </td> </tr>
+<tr> <td>Learning Rate=.002</td>    <td align=right><a href="cond_good_BProp_Learn=.002.gif">101</a></td>    <td align=right><a href="cond_fair_BProp_Learn=.002.gif">270</a></td>     <td align=right><a href="cond_ill_BProp_Learn=.002.gif">     7968</a></td> </tr>
+<tr> <td>Learning Rate=.005</td>    <td align=right><a href="cond_good_BProp_Learn=.005.gif"> 87</a></td>    <td align=right><a href="cond_fair_BProp_Learn=.005.gif"> 97</a></td>     <td align=right><a href="cond_ill_BProp_Learn=.005.gif">     3176</a></td> </tr>
+<tr> <td>Learning Rate=.01 </td>    <td align=right><a href="cond_good_BProp_Learn=.01.gif">  82</a></td>    <td align=right><a href="cond_fair_BProp_Learn=.01.gif">  80</a></td>     <td align=right><a href="cond_ill_BProp_Learn=.01.gif">      1578</a></td> </tr>
+<tr> <td>Learning Rate=.02 </td>    <td align=right><a href="cond_good_BProp_Learn=.02.gif">  86</a></td>    <td align=right><a href="cond_fair_BProp_Learn=.02.gif">  78</a></td>     <td align=right>                                         diverged    </td>  </tr>
+<tr> <td>Learning Rate=.05 </td>    <td align=right><a href="cond_good_BProp_Learn=.05.gif">  73</a></td>    <td align=right><a href="cond_fair_BProp_Learn=.05.gif">  67</a></td>     <td align=right>                                         diverged    </td>  </tr>
+<tr> <td>Learning Rate=.1  </td>    <td align=right><a href="cond_good_BProp_Learn=.1.gif">   85</a></td>    <td align=right><a href="cond_fair_BProp_Learn=.1.gif">   59</a></td>     <td align=right>                                         diverged    </td>  </tr>
+<tr> <td>Learning Rate=.2  </td>    <td align=right><a href="cond_good_BProp_Learn=.2.gif">   69</a></td>    <td align=right><a href="cond_fair_BProp_Learn=.2.gif">   74</a></td>     <td align=right>                                         diverged    </td>  </tr>
+<tr> <td>Learning Rate=.5  </td>    <td align=right><a href="cond_good_BProp_Learn=.5.gif">   68</a></td>    <td align=right>                                    diverged    </td>     <td align=right>                                         diverged    </td>  </tr>
+<tr> <td>&nbsp;</td> </tr>
+<tr> <td>Better Props</td> </tr>
+<tr> <td>RPROP              </td>    <td align=right><a href="cond_good_RProp.gif">            16</a></td>    <td align=right><a href="cond_fair_RProp.gif">            29</a></td>     <td align=right><a href="cond_ill_RProp.gif">                 565</a></td>  </tr>
+<tr> <td>Quickprop          </td>    <td align=right><a href="cond_good_QProp.gif">             3</a></td>    <td align=right><a href="cond_fair_QProp.gif">            26</a></td>     <td align=right>                                         diverged    </td>  </tr>
+<tr> <td>&nbsp;</td> </tr>
+<tr> <td>Conventional Methods</td> </tr>
+<tr> <td>Conjugate Gradients</td>    <td align=right><a href="cond_good_ConGra.gif">            2</a></td>    <td align=right><a href="cond_fair_ConGra.gif">           24</a></td>     <td align=right><a href="cond_ill_ConGra.gif">                  8</a></td>  <td>Powell (1977) and Beale (1972) with imprecise line search</td></tr>
+<tr> <td>Quasi-Newton       </td>    <td align=right><a href="cond_good_QuaNew.gif">            4</a></td>    <td align=right><a href="cond_fair_QuaNew.gif">            2</a></td>     <td align=right><a href="cond_ill_QuaNew.gif">                  2</a></td>  <td>Dual BFGS with imprecise line search</td></tr>
+<tr> <td>Levenberg-Marquardt</td>    <td align=right><a href="cond_good_LevMar.gif">            1</a></td>    <td align=right><a href="cond_fair_LevMar.gif">            1</a></td>     <td align=right><a href="cond_ill_LevMar.gif">                  1</a></td>  <td>More\'e (1978); always takes only one iteration for linear models</td></tr>
+
+</table>
+<p>
+
+If the condition number were 1.0, the contours of the error surface
+would be circles. For the data set with good condition, the error
+contours are nearly circular. For the data set with fair condition, the
+error contours are moderately eccentric. For the ill-conditioned data,
+the error contours are highly eccentric. <p>
+
+For a condition number of 1.0, the negative gradient always points straight
+at the minimum of the error surface. Hence, training algorithms that take
+steps in the direction of the negative gradient (such as standard backprop
+or steepest descent) are likely to work well. As you can see from the plots
+above, for a condition number greater than one, the negative gradient does
+not point directly to the minimum except from points on the axes of the
+elliptical contours.  For very ill-conditioned problems, the negative
+gradient sometimes points almost at right angles to the direction of the
+minimum.  Hence, training algorithms that take steps in the direction of
+the negative gradient are likely to be very slow. <p>
+
+Where the condition number is high, the error surface is relatively flat
+in one or more directions, but strongly curved in other directions.
+Backprop requires a high learning rate to make good progress in flat
+areas. But if you use a learning rate that is high enough for the flat
+directions, you may get divergence in the highly curved directions.
+Hence backprop with a constant learning rate is especially bad for
+ill-conditioned neural networks.<p>
+
+RPROP, Quickprop, conjugate gradients, and quasi-Newton are all capable
+of adapting to ill-conditioned error surfaces. However, these methods all
+take initial steps in the direction of the negative gradient, so they
+still work better with well-conditioned problems. <p>
+
+Newton, Gauss-Newton, and Levenberg-Marquardt methods can all find the
+minimum of a quadratic error surface in one iteration. However, extremely
+bad conditioning can make the solution numerically undefined, so that the
+Hessian is, for numerical purposes, singular. For statistical applications
+in which the main interest is the values of the weights, such severe
+ill-conditioning is a very serious matter, since the weights cannot be
+computed accurately by any method. But neural nets are usually used for
+predictive modeling, and the main interest is in the accuracy of the
+predictions rather than the values of the weights. Levenberg-Marquardt
+methods that are programmed to handle near-singularity in a reasonable way
+are capable of producing accurate predictions even when the optimal weight
+values are undetermined due to ill-conditioning.  For these methods,
+ill-conditioning is not a serious concern unless important information in
+the training data is lost through numerical error. For example, if there
+are two highly correlated input variables <tt>X1</tt> and <tt>X2,</tt> and
+all the predictive information in the inputs is concentrated in the
+direction <tt>X1-X2,</tt> loss of precision may make it impossible for any
+finite-precision algorithm to obtain accurate results.  <p>
+
+In neural nets with nonlinear hidden or output units, the error surface
+is not quadratic. Hence the Hessian and the condition number change
+during training. The error surface contains many saddle points, so there
+may be points during training where the Hessian is indefinite (i.e., has
+both positive and negative eigenvalues) and the condition number does not
+exist.  In particular, the origin is a saddle point, so if small initial
+weights are used, the Hessian is likely to be indefinite for the first
+few iterations. Second-order methods do not work especially well when
+the Hessian is indefinite, so first-order methods may actually be more
+efficient than second-order methods early in training. <p>
+
+However, for backprop with a constant learning rate, the learning rate
+must be set small enough to avoid divergence in the ill-conditioned
+regions of the error surface. Since RPROP and Quickprop have adaptive
+learning rates, they are less sensitive than standard backprop to
+changing condition numbers. Conjugate gradient methods can also adapt to
+changing condition numbers. Quasi-Newton methods develop an
+approximation to the Hessian during training and therefore adapt even
+more effectively to changing condition numbers. Levenberg-Marquardt
+computes an approximation to the Hessian on every iteration and
+therefore adapts very quickly to changing condition numbers. 
+When the Hessian is indefinite, Levenberg-Marquardt approximates
+steepest descent, so it works well even in regions with an
+indefinite Hessian. <p>
+
+In the following examples, two MLPs are used that are identical except
+for centering the inputs and the use of tanh vs. logistic hidden
+activation functions. The MLP with centered inputs and tanh hidden
+units has poor numerical condition. The MLP with uncentered inputs
+and logistic hidden units is very ill-conditioned. I have not yet
+been able to concoct an MLP with good condition. <p>
+
+The data were generated using this SAS code:
+<pre>
+   do x1=1 to 9 by .25;
+      do x2=1 to 9 by .25;
+         h1=tanh(x1+x2-10);
+         h2=tanh(x1-x2);
+         y=h1+h2;
+         output;
+      end;
+   end;
+</pre>
+
+The optimal weights for the poor- and ill-conditioned MLPs are
+shown in the following table. The initial weights were set to
+half the optimal weights in an attempt to avoid bad local
+optima while not making learning too easy. <p>
+
+<table border>
+<caption align=top>Description of Poor- and Ill-Conditioned MLPs</caption>
+<tr> <th></th> <th colspan=2>Poor Condition</th> <th colspan=2>Ill Condition</th> </tr>
+<tr> <th>Weights</th>   <th>Optimal</th> <th>Initial</th>   <th>Optimal</th> <th>Initial</th> </tr>
+<tr> <td>bias -> h1</td> <td align=right> 0</td> <td align=right>  0</td>  <td align=right>-20</td> <td align=right>-10</td> </tr>
+<tr> <td>x1 -> h1  </td> <td align=right> 1</td> <td align=right> .5</td>  <td align=right>  2</td> <td align=right>  1</td> </tr>
+<tr> <td>x2 -> h1  </td> <td align=right> 1</td> <td align=right> .5</td>  <td align=right>  2</td> <td align=right>  1</td> </tr>
+<tr> <td>bias -> h2</td> <td align=right> 0</td> <td align=right>  0</td>  <td align=right>  0</td> <td align=right>  0</td> </tr>
+<tr> <td>x1 -> h2  </td> <td align=right> 1</td> <td align=right> .5</td>  <td align=right>  2</td> <td align=right>  1</td> </tr>
+<tr> <td>x2 -> h2  </td> <td align=right>-1</td> <td align=right>-.5</td>  <td align=right> -2</td> <td align=right> -1</td> </tr>
+<tr> <td>bias -> y </td> <td align=right> 0</td> <td align=right>  0</td>  <td align=right> -2</td> <td align=right> -1</td> </tr>
+<tr> <td>h1 -> y   </td> <td align=right> 1</td> <td align=right> .5</td>  <td align=right>  2</td> <td align=right>  1</td> </tr>
+<tr> <td>h2 -> y   </td> <td align=right> 1</td> <td align=right> .5</td>  <td align=right>  2</td> <td align=right>  1</td> </tr>
+<tr> <th>MSE</th>        <td align=right> 0</td> <td align=right> .508</td>  <td align=right>  0</td> <td align=right>  .508</td> </tr>
+<tr> <th>Condition Number<br>at Optimum</th> <td align=center colspan=2>128</td> <td align=center colspan=2>49111</td> </tr>
+</table>
+<p>
+
+The following table shows the number of iterations required to reach a
+normalized MSE of .0001, which is equivalent to a normalized RMSE of .01
+or an MSE of .000156.  Since each network has nine weights, the weight
+space cannot be plotted.  Instead, each plot has nine lines
+corresponding to the nine weights.  The vertical axis gives the value of
+the weights, while the horizontal axis gives the iteration number. <p>
+
+<table border>
+<caption align=top>Number of Iterations to Normalized MSE of .0001 for MLPs</caption>
+<tr> <th rowspan=2>Training Algorithm</th> <th colspan=2>Condition</th> <th rowspan=2 align=left>Comments</th> </tr>
+<tr>                                 <th align=right>Poor</th>                                                <th align=right>Ill</th>                                                   </tr>
+<tr> <td>&nbsp;</td> </tr>
+<tr> <td>Backprop Momentum=0</td> </tr>
+<tr> <td>Learning Rate=.1  </td>    <td align=right><a href="nn_Poor_bprop01z.gif">     519</a></td>    <td align=right><a href="nn_Ill_bprop01z.gif">&gt;1000</a></td> <td>MSE after 1000 iterations:  0.0147</td>     </tr>
+<tr> <td>Learning Rate=.2  </td>    <td align=right><a href="nn_Poor_bprop02z.gif">     259</a></td>    <td align=right><a href="nn_Ill_bprop02z.gif">&gt;1000</a></td> <td>MSE after 1000 iterations:  0.0356</td>      </tr>
+<tr> <td>Learning Rate=.5  </td>    <td align=right><a href="nn_Poor_bprop05z.gif">      51</a></td>    <td align=right><a href="nn_Ill_bprop05z.gif">&gt;1000</a></td> <td>MSE after 1000 iterations:  0.8302</td>      </tr>
+<tr> <td>Learning Rate=1   </td>    <td align=right><a href="nn_Poor_bprop10z.gif">&gt;1000</a></td>    <td align=right><a href="nn_Ill_bprop10z.gif">&gt;1000</a></td> <td>MSE after 1000 iterations: Poor=0.41315, Ill=18.0986</td>      </tr>
+<tr> <td>&nbsp;</td> </tr>
+<tr> <td>Backprop Momentum=.9</td> </tr>
+<tr> <td>Learning Rate=.1  </td>    <td align=right><a href="nn_Poor_bprop01.gif">       93</a></td>    <td align=right><a href="nn_Ill_bprop01.gif">&gt;1000</a></td> <td>MSE after 1000 iterations: 0.0058</td>      </tr>
+<tr> <td>Learning Rate=.2  </td>    <td align=right><a href="nn_Poor_bprop02.gif">       86</a></td>    <td align=right><a href="nn_Ill_bprop02.gif">&gt;1000</a></td> <td>MSE after 1000 iterations: 0.0029</td>      </tr>
+<tr> <td>Learning Rate=.5  </td>    <td align=right><a href="nn_Poor_bprop05.gif">       96</a></td>    <td align=right><a href="nn_Ill_bprop05.gif">&gt;1000</a></td> <td>MSE after 1000 iterations: 0.0002</td>      </tr>
+<tr> <td>Learning Rate=1   </td>    <td align=right><a href="nn_Poor_bprop10.gif">      173</a></td>    <td align=right><a href="nn_Ill_bprop10.gif">&gt;1000</a></td> <td>MSE after 1000 iterations: 1.5556</td>      </tr>
+
+<tr> <td>&nbsp;</td> </tr>
+<tr> <td colspan=3>Incremental Backprop Momentum=0</td> </tr>
+<tr> <td>Learning Rate=.005 </td>    <td align=right><a href="nn_Poor_iprop00z.gif">     10</a></td>    <td align=right><a href="nn_Ill_iprop00z.gif">&gt;1000</a></td> <td>MSE after 1000 iterations: 0.00054</td>     </tr>
+<tr> <td>Learning Rate=.01  </td>    <td align=right><a href="nn_Poor_iprop01z.gif">      5</a></td>    <td align=right><a href="nn_Ill_iprop01z.gif">     803</a></td>                                                 </tr>
+<tr> <td>Learning Rate=.02  </td>    <td align=right><a href="nn_Poor_iprop02z.gif">      3</a></td>    <td align=right><a href="nn_Ill_iprop02z.gif">     397</a></td>                                                 </tr>
+<tr> <td>Learning Rate=.04  </td>    <td align=right><a href="nn_Poor_iprop04z.gif">      2</a></td>    <td align=right><a href="nn_Ill_iprop04z.gif">     185</a></td>                                                 </tr>
+<tr> <td>Learning Rate=.08  </td>    <td align=right><a href="nn_Poor_iprop08z.gif">      2</a></td>    <td align=right><a href="nn_Ill_iprop08z.gif">&gt;1000</a></td> <td>MSE after 1000 iterations: 0.01632</td>     </tr>
+<tr> <td>&nbsp;</td> </tr>
+<tr> <td colspan=3>Incremental Backprop Momentum=.5</td> </tr>
+<tr> <td>Learning Rate=.005 </td>    <td align=right><a href="nn_Poor_iprop00.gif">       5</a></td>    <td align=right><a href="nn_Ill_iprop00.gif">     801</a></td>                                                  </tr>
+<tr> <td>Learning Rate=.01  </td>    <td align=right><a href="nn_Poor_iprop01.gif">       3</a></td>    <td align=right><a href="nn_Ill_iprop01.gif">     394</a></td>                                                  </tr>
+<tr> <td>Learning Rate=.02  </td>    <td align=right><a href="nn_Poor_iprop02.gif">       2</a></td>    <td align=right><a href="nn_Ill_iprop02.gif">     197</a></td>                                                  </tr>
+<tr> <td>Learning Rate=.04  </td>    <td align=right><a href="nn_Poor_iprop04.gif">       1</a></td>    <td align=right><a href="nn_Ill_iprop04.gif">      73</a></td>                                                  </tr>
+<tr> <td>Learning Rate=.08  </td>    <td align=right><a href="nn_Poor_iprop08.gif">&gt;1000</a></td>    <td align=right><a href="nn_Ill_iprop08.gif">&gt;1000</a></td> <td>MSE after 1000 iterations: Poor=0.21269 Ill=0.60423</td>      </tr>
+
+<tr> <td>&nbsp;</td> </tr>
+<tr> <td>Better Props</td> </tr>
+<tr> <td>RPROP              </td>    <td align=right><a href="nn_Poor_rprop.gif">       259</a></td>    <td align=right><a href="nn_Ill_rprop.gif">&gt;1000</a></td>     <td>MSE after 1000 iterations: 0.0044</td>  </tr>
+<tr> <td>Quickprop          </td>    <td align=right><a href="nn_Poor_qprop.gif">        96</a></td>    <td align=right><a href="nn_Ill_qprop.gif">&gt;1000</a></td>     <td>MSE after 1000 iterations: 0.0646</td>  </tr>
+<tr> <td>&nbsp;</td> </tr>
+<tr> <td>Conventional Methods</td> </tr>
+<tr> <td>Conjugate Gradients</td>    <td align=right><a href="nn_Poor_congra.gif">        8</a></td>    <td align=right><a href="nn_Ill_congra.gif">     123</a></td>      <td>Powell (1977) and Beale (1972) with imprecise line search</td></tr>
+<tr> <td>Quasi-Newton       </td>    <td align=right><a href="nn_Poor_quanew.gif">        5</a></td>    <td align=right><a href="nn_Ill_quanew.gif">      19</a></td>      <td>Dual BFGS with imprecise line search</td></tr>
+<tr> <td>Levenberg-Marquardt</td>    <td align=right><a href="nn_Poor_levmar.gif">        3</a></td>    <td align=right><a href="nn_Ill_levmar.gif">       3</a></td>      <td>More\'e (1978)</td></tr>
+
+</table>
+<p>
+
+The following list mentions some sources of ill-conditioning
+and possible remedies. Note that a remedy for one source of
+ill-conditioning may be fruitless if other sources of
+ill-conditioning remain. Although these remedies will usually
+have other beneficial side-effects, such as increasing the
+chance of finding a good local minimum, there will always
+be some data sets where the side-effects are bad.
+
+<ol>
+
+<li> Low coefficient of variation (standard deviation divided by the mean)
+     of input variables.
+     This problem can be cured by subtracting the mean of each input variable
+     from the variable.
+<p>
+<li> Different variances among input variables.
+     This problem can be cured by dividing each input variable
+     by its standard deviation.
+<p>
+<li> High correlations among input variables.
+     This problem can be cured by orthonormalizing the input
+     variables using Gram-Schmidt, SVD, principal components, etc.
+     Note that the orthogonal components must be standardized
+     as in item (2). If the inputs are singular or nearly
+     singular, then the orthogonal components corresponding
+     to singularities or near singularities are mostly noise
+     and should be deleted from the network.
+<p>
+<li> Saturated hidden units.
+     This problem can be ameliorated by using weight decay or similar
+     regularization methods on the input-to-hidden weights,
+     at the risk of less accuracy in learning
+     discontinuities or steep areas of the target function.
+<p>
+<li> Low coefficient of variation for the activation values of
+     a hidden unit.
+     This problem can often be ameliorated by using a hidden
+     unit activation function with an output range of (-1,1),
+     such as tanh, instead of (0,1), such as the logistic
+     function.
+<p>
+<li> Low input-to-hidden weights, resulting in the activation
+     function operating in its middle, nearly linear range.
+     Hence, if you multiply all the weights feeding into a
+     hidden unit by a constant not much larger than one, and
+     divide all the weights fanning out from that unit by the
+     same constant, the error will change little.
+     It may help to include direct input-to-output connections
+     to account for linear relationships, allowing the hidden
+     units to concentrate on nonlinearities.
+<p>
+<li> Low hidden-to-output weights, causing the input-to-hidden
+     weights to be poorly determined.
+     It may help to use a constructive algorithm that starts
+     with a small number of hidden units
+     and gradually adds more hidden units as needed.
+<p>
+<li> Two or more hidden units pointing in the same direction,
+     yielding parallel hyperplanes. This kind of configuration may be
+     necessary for an MLP to learn ridges in the target
+     function. If so, using value functions (such as the
+     Gaussian function) instead of sigmoid functions for the
+     hidden unit activations may sometimes help. If not,
+     using multiple random initializations or more sophisticated
+     global optimization algorithms should avoid the problem.
+<p>
+<li> Minima at infinity. It is common for hidden-to-output
+     weights to approach infinity while input-to-hidden
+     weights approach zero during training 
+     (Cardell, Joerding, and Li 1994). 
+     This problem can be ameliorated by using weight decay or similar
+     regularization methods on the hidden-to-output weights.
+<p>
+<li> Rotationally symmetric regions of the target function.
+     It may help to use radial hidden units or quadratic functions
+     of the inputs (Flake 1998).
+<p>
+</ol>
+
+Other remedies are offered by Schraudolph (1998) and
+van der Smagt and Hirzinger (1998). <p>
+
+Although ill-conditioning is an important consideration, its effect is
+exaggerated by Saarinen, Bramley, and Cybenko (1993) for several
+reasons:  they do not center the input variables, they use no bias for
+the output unit, and for some examples they choose initial values from a
+ridiculously wide range of (-100,100). Their conclusion that neural
+networks "can cause undue strain on any numerical scheme which uses
+Jacobians" is unduly pessimistic because the numerical analysis results
+they cite are concerned with the accuracy of computing the optimal
+weights, which is inherently difficult for ill-conditioned problems. But
+in neural networks, what matters is the accuracy of the outputs (and
+ultimately of generalization), not accuracy of the weights. It is often
+possible to obtain accurate outputs without accurate weights, since the
+basic meaning of "ill-conditioned" is that large changes in the weights
+may have little effect on the objective function (Reed and Marks, 1999,
+p. 297).  In fact, neural net researchers often consider
+ill-conditioning (with respect to the unregularized error function) to
+be a virtue when it comes in the form of "fault tolerance".  <p>
+
+
+References:
+<dl>
+<dt><dd><p>
+   Cardell, N.S., Joerding, W., and Li, Y. (1994), "Why Some Feedforward
+   Networks Cannot Learn Some Polynomials," Neural Computation, 6,
+   761-766.
+<dt><dd><p>
+   Flake, G.W. (1998), "Square unit augmented, radially extended, multilayer
+   perceptrons," in Orr and Mueller (1998), 145-163.
+<dt><dd><p>
+   Orr, G.B., and Mueller, K.-R., eds. (1998), <cite>Neural Networks:
+   Tricks of the Trade,</cite> Berlin: Springer, ISBN 3-540-65311-2.
+<dt><dd><p>
+   Reed, R.D., and Marks, R.J, II (1999), <cite>Neural Smithing:
+   Supervised Learning in Feedforward Artificial Neural Networks,</cite>
+   Cambridge, MA: The MIT Press.
+<dt><dd><p>
+   Saarinen, S., Bramley, R., and Cybenko, G. (1993), "Ill-conditioning
+   in neural network training problems," Siam J. of Scientific
+   Computing, 14, 693-714.
+<dt><dd><p>
+   Schraudolph, N.N. (1998), "Centering neural network gradient factors,"
+   in Orr and Mueller (1998), 207-226.
+<dt><dd><p>
+   van der Smagt, P., and Hirzinger, G. (1998), "Solving the ill-conditioning
+   in neural network learning," in Orr and Mueller (1998), 193-206.
+</dl>
+
+            
+</body>     
+</html>     
+            
+            
+            
+            
+            
+            

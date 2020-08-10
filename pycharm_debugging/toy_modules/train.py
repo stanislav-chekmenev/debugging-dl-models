@@ -15,7 +15,7 @@ def train(model, epochs, train_dataset, test_dataset, save_dir):
     :return: None
     """
 
-    writer = make_writer(os.path.join('summaries/exercise_1'), save_dir)
+    writer = make_writer(os.path.join('summaries'), save_dir)
     train_loss = tf.keras.metrics.Mean(name='train_loss')
     test_loss = tf.keras.metrics.Mean(name='test_loss')
 
@@ -36,3 +36,6 @@ def train(model, epochs, train_dataset, test_dataset, save_dir):
             # Test loss calculation
             loss_test = model.get_loss(X, y)
             test_loss(loss_test)
+
+        if epoch % 10 == 0:
+            print(f'Train loss: {train_loss.result()}. Test loss {test_loss.result()}')

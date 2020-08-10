@@ -27,7 +27,7 @@ class RegressorNet(tf.keras.Model):
 
         self.regressor = tf.keras.Model(inputs=x_input, outputs=out)
 
-    def __call__(self, x):
+    def call(self, x):
         return self.regressor(x)
 
     def get_loss(self, x, y_true):

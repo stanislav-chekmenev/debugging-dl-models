@@ -3,6 +3,8 @@ opencv-python
 matplotlib
 pandas
 seaborn
+see-rnn
 sklearn
 tensorflow==2.3.0
-
+tensorflow_datasets
+tensorflow_hub
