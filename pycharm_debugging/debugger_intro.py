@@ -1,6 +1,6 @@
-'''
+"""
 A small script for quick introduction to debugging with the PyCharm debugger.
-'''
+"""
 
 class Car:
 
@@ -27,7 +27,6 @@ class Car:
             return self.odometer / self.time
         else:
             pass
-
 
 if __name__ == '__main__':
 
