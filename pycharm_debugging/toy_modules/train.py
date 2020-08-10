@@ -5,14 +5,13 @@ from toy_modules.utils import make_writer
 
 
 def train(model, epochs, train_dataset, test_dataset, save_dir):
-    """
 
+    """
     :param model: Model instance
     :param epochs: Number of epochs to train (set it to 200)
     :param train_dataset: tf.data.Datasets object for train data
     :param test_dataset: tf.data.Datasets object for test data
     :param save_dir: Directory to save tensorboard output
-    :return: None
     """
 
     writer = make_writer(os.path.join('summaries'), save_dir)

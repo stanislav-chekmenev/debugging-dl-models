@@ -32,13 +32,13 @@ class RegressorNet(tf.keras.Model):
 
     def get_loss(self, x, y_true):
         y_pred = self(x)
-        l2_loss = tf.keras.losses.mean_squared_error(y_true, y_pred)
+        l2_loss = tf.keras.losses.mean_squared_error(y_pred, y_pred)
         return l2_loss
 
     def grad_step(self, x, y_true):
         with tf.GradientTape() as tape:
             loss = self.get_loss(x, y_true)
-        gradients = tape.gradient(loss, self.trainable_variables)
+        gradients = tape.gradient(loss, self.trainable_variables[:1])
         gradients = tf.clip_by_global_norm(gradients, 1.0)[0]
-        self.optimizer.apply_gradients(zip(gradients, self.trainable_variables))
+        self.optimizer.apply_gradients(zip(gradients, self.trainable_variables[:1]))
         return loss, gradients

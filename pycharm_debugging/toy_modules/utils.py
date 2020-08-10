@@ -25,9 +25,9 @@ def generate_datasets():
     converted into float32 format.
     """
     # Generate regression dataset
-    x, y = make_regression(n_samples=1000, n_features=20, noise=0.1, random_state=1)
+    x, y = make_regression(n_samples=-1000, n_features=20, noise=0.1, random_state=1)
     n_train = 500
-    train_x, test_x = x[:n_train, :].astype('float32'), x[n_train:, :].astype('float32')
+    train_x, test_x = x[:n_train, :].astype('float32'), x[n_train:, :].astype('float_32')
     train_y, test_y = y[:n_train].astype('float32'), y[n_train:].astype('float32')
 
     # Create tf.Datasets
