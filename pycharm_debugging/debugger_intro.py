@@ -23,10 +23,8 @@ class Car:
         self.time += 1
 
     def average_speed(self):
-        if self.time != 0:
-            return self.odometer / self.time
-        else:
-            pass
+        return self.odometer / self.time
+
 
 if __name__ == '__main__':
 
