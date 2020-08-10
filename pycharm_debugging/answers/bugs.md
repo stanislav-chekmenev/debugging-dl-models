@@ -8,3 +8,4 @@
 - y_pred, y_pred for the loss
 - tanh in the first layer
 - relu in the last layer
+- shuffle according to the shape[1]

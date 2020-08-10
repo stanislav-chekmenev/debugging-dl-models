@@ -27,12 +27,12 @@ def generate_datasets():
     # Generate regression dataset
     x, y = make_regression(n_samples=-1000, n_features=20, noise=0.1, random_state=1)
     n_train = 500
-    train_x, test_x = x[:n_train, :].astype('float32'), x[n_train:, :].astype('float_32')
-    train_y, test_y = y[:n_train].astype('float32'), y[n_train:].astype('float32')
+    train_x, test_x = x[:n_train, :].astype('float_32'), x[n_train:, :].astype('float_32')
+    train_y, test_y = y[:n_train].astype('float_32'), y[n_train:].astype('float_32')
 
     # Create tf.Datasets
-    train_dataset = tf.data.Dataset.from_tensor_slices((train_x, train_y)).shuffle(train_x.shape[0]).batch(32)
-    test_dataset = tf.data.Dataset.from_tensor_slices((test_x, test_y)).shuffle(test_x.shape[0]).batch(32)
+    train_dataset = tf.data.Dataset.from_tensor_slices((train_x, train_y)).shuffle(train_x.shape[1]).batch(32)
+    test_dataset = tf.data.Dataset.from_tensor_slices((test_x, test_y)).shuffle(test_x.shape[1]).batch(32)
 
     return train_dataset, test_dataset
 
