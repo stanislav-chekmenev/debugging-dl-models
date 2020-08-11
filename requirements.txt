@@ -1,5 +1,4 @@
 jupyterlab
-opencv-python
 matplotlib
 pandas
 seaborn
