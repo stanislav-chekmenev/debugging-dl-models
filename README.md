@@ -2,6 +2,7 @@
 ### Material for the class on debugging deep learning models at Data Science Retreat.
 #### Useful resources for debugging:
 - [Debug a deep learning network](https://medium.com/@jonathan_hui/debug-a-deep-learning-network-part-5-1123c20f960d): A nicely written blog post on how to debug a deep learning model.
+- [Recipe for training neural networks](http://karpathy.github.io/2019/04/25/recipe/): Andrej Karpathy blog post on how to train neural nets.
 - [Troubleshooting deep learning models](https://www.youtube.com/watch?v=GwGTwPcG0YM&feature=youtu.be): A great video to watch where many debugging steps are summarized in a comprehensive way.
 - [Machine learning yearning](https://www.deeplearning.ai/machine-learning-yearning/): A practical manual written by Andrew Ng, which gives a full overview how one should structure a deep learning project.
 - [Dive into deep learning](https://d2l.ai/index.html): An amazing website with theory of deep learning, code examples, exercises. It starts from basics and covers the most advanced topics in DL.
