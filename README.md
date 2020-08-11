@@ -23,15 +23,15 @@ git clone https://github.com/stanislav-chekmenev/debugging-dl-models
 ```
 
 - Please, create a new virtual environment with Python=3.6. Feel free to use any of your choice. 
-	- Conda:
+Conda:
 ```bash
 conda create --name <name> python=3.6.9
 conda activate <name>
 ```
-	- Virtualenv:
+ Virtualenv:
 ```bash
 python3 -m venv <path/to/venv>
-source <path/to/venv"/bin/activate
+source <path/to/venv>/bin/activate
 ```
 - Upgrade pip, it might be of an old version
 ```bash
