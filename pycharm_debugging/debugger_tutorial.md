@@ -15,8 +15,8 @@ with the exception.
 #### Stepping
 
 - Run the debugger and press `Resume program`.
-- Press step over to execute step by step.
-- When on the line with input press `Step into`.
+- Press `step over` to execute step by step.
+- When on the line with `input` press `Step into`.
 - Place caret and press `Run to cursor`.
 - When on my_car.step() press `Step into my code`
 
