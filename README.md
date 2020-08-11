@@ -23,6 +23,7 @@ git clone https://github.com/stanislav-chekmenev/debugging-dl-models
 ```
 
 - Please, create a new virtual environment with Python=3.6. Feel free to use any of your choice. 
+
 Conda:
 ```bash
 conda create --name <name> python=3.6.9
