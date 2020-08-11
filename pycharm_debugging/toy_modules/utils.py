@@ -21,8 +21,7 @@ def make_writer(logs_dir: str, run_dir: str):
 
 def generate_datasets():
     """
-    :return: Two tf.data.Dataset object with train and test data created by sklearn.datasets.make_regression method and
-    converted into float32 format.
+    :return: Two tf.data.Dataset object with train and test data created by sklearn.datasets.make_regression method.
     """
     # Generate regression dataset
     x, y = make_regression(n_samples=-1000, n_features=20, noise=0.1, random_state=1)

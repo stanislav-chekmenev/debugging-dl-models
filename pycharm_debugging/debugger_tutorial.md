@@ -40,6 +40,6 @@ It will be watched and displayed there from no on.
     - For example, type 'Dense' in classes and you can go immediately to the place where the class for keras Dense() layer is defined. 
 - Shift+Ctrl+Backspace - move through the list of the most recent change points
 
-- Shift+Ctrl+F8 - view and manage all breakpoints
+- Shift+Ctrl+F8 - view and manage all breakpoints and their settings
 - Shift+F9 - run debugger for the selected script
 - Shift+F10 - run the selected script

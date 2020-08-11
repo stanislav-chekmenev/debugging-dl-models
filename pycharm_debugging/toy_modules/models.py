@@ -8,11 +8,27 @@ class RegressorNet(tf.keras.Model):
         super(RegressorNet, self).__init__()
 
         self.optimizer = optimizer
-        self.dense_1_1 = tf.keras.layers.Dense(64, activation='tanh', name='dense_1_1')
-        self.dense_1_2 = tf.keras.layers.Dense(64, activation='relu', name='dense_1_2')
+        self.dense_1_1 = tf.keras.layers.Dense(
+            64, activation='tanh',
+            kernel_initializer=tf.keras.initializers.GlorotUniform(),
+            name='dense_1_1'
+        )
+        self.dense_1_2 = tf.keras.layers.Dense(
+            64, activation='relu',
+            kernel_initializer=tf.keras.initializers.GlorotUniform(),
+            name='dense_1_2'
+        )
         self.concat = tf.keras.layers.Concatenate(name='concat')
-        self.dense_2 = tf.keras.layers.Dense(32, activation='relu', name='dense_2')
-        self.out = tf.keras.layers.Dense(1, activation='relu', name='dense_out')
+        self.dense_2 = tf.keras.layers.Dense(
+            32, activation='relu',
+            kernel_initializer=tf.keras.initializers.GlorotUniform(),
+            name='dense_2'
+        )
+        self.out = tf.keras.layers.Dense(
+            1, activation='relu',
+            kernel_initializer=tf.keras.initializers.GlorotUniform(),
+            name='dense_out'
+        )
 
         # Create network logic
         x_input = tf.keras.Input(shape=input_shape)

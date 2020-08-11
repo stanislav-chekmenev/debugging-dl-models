@@ -8,3 +8,4 @@
 - tanh in the first layer
 - relu in the last layer
 - shuffle according to the shape[1]
+- wrong initializer/try glorot_normal

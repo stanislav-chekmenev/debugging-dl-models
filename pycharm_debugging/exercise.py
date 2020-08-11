@@ -10,7 +10,7 @@ if __name__ == '__main__':
     # Generate datasets
     train_dataset, test_dataset = generate_datasets()
 
-    # Create the model
+    # Create the model. Please, use SGD optimizer for this exercise,
     regressor = RegressorNet(
         input_shape=20,
         optimizer=tf.keras.optimizers.SGD(learning_rate=0.001, momentum=0.9)
