@@ -1,4 +1,4 @@
-## Exercise 1
+## Exercise
 
 - Get your script to run without throwing exceptions.
 - Modify train.py to see tensorboard output for losses Send the output to summaries/. 
