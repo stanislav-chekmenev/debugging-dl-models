@@ -5,6 +5,7 @@
 - [Recipe for training neural networks](http://karpathy.github.io/2019/04/25/recipe/): An Andrej Karpathy's blog post on how to train neural nets.
 - [Troubleshooting deep learning models](https://www.youtube.com/watch?v=GwGTwPcG0YM&feature=youtu.be): A great video to watch where many debugging steps are summarized in a comprehensive way.
 - [Machine learning yearning](https://www.deeplearning.ai/machine-learning-yearning/): A practical manual written by Andrew Ng, which gives a full overview how one should structure a deep learning project.
+- [Bayesian optimization](http://krasserm.github.io/2018/03/21/bayesian-optimization/): Bayesian optimization for hyperparameter search.
 - [Dive into deep learning](https://d2l.ai/index.html): An amazing website with theory of deep learning, code examples, exercises. It starts from basics and covers the most advanced topics in DL.
 - [Deep learning](https://www.deeplearningbook.org/): The Bible of deep learning written by Ian Goodfellow and Yoshua Bengio and Aaron Courville. If you wanna go **deep**, this book is a must to read.
  
