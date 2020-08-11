@@ -109,6 +109,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+ddlm/
 
 # Spyder project settings
 .spyderproject
@@ -127,3 +128,22 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# My stuff
+notebooks/basics/summaries/*
+notebooks/advanced/summaries/*
+pycharm_debugging/summaries/*
+data/*
+pycharm_debugging/.idea/*
+live/*
+pycharm_debugging/answers/*
+pycharm_debugging/exercise_correct.py
+pycharm_debugging/toy_modules/utils_correct.py
+pycharm_debugging/toy_modules/train_correct.py
+pycharm_debugging/toy_modules/models_correct.py
+
+
+
+
+
+
