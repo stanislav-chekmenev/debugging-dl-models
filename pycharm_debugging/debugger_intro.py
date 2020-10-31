@@ -17,6 +17,7 @@ class Car:
 
     def brake(self):
         self.speed -= 5
+Process finished with exit code 1
 
     def step(self):
         self.odometer += self.speed
