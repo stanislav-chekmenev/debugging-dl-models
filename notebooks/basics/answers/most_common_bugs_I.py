@@ -16,8 +16,6 @@ train(model, 1000, stand_train_set, labels, 'scaling/regression_standard')
 
 
 
-
-
 # Ex 2
 model = MyModel()
 # Fix the loss
