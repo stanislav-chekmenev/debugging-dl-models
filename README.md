@@ -24,18 +24,30 @@
 git clone https://github.com/stanislav-chekmenev/debugging-dl-models
 ```
 
-- Please, create a new virtual environment with Python=3.6. Feel free to use any of your choice. 
+- Please, create a new virtual environment with Python=3.8. Feel free to use any of your choice. I prefer Virtualenv.
 
 Conda:
 ```bash
-conda create --name <name> python=3.6.9
+conda create --name <name> python=3.8.6
 conda activate <name>
 ```
  Virtualenv:
+For Ubuntu 20.04:
 ```bash
+sudo apt install virtualenv
 python3 -m venv <path/to/venv>
 source <path/to/venv>/bin/activate
 ```
+For Ubuntu 18.04:
+```bash
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt update
+sudo apt install python3.8
+sudo apt install virtualenv
+virtualenv -p `which python3.8` <path/to/venv>
+source <path/to/venv>/bin/activate
+```
+
 - Upgrade pip, it might be of an old version
 ```bash
 pip install pip --upgrade
@@ -46,12 +58,43 @@ pip install pip --upgrade
 pip install -r requirements.txt
 ```
 
-- Install PyCharm:
+- Install PyCharam Community Edition:
 	- Follow [this](https://www.jetbrains.com/help/pycharm/installation-guide.html) manual for the installation details.
+	- If you are on Linux Ubuntu starting from 16.04, then please use the following command:
+	```bash
+	sudo snap install pycharm-community --classic
+	```
+
+- Create a new project and virtual environment in Pycharm:
+There are several options how to do it. This one (which is a bit long, but solid) will use a default Pycharm option with Virtualenv and is recommended to avoid further complications.
+	- Open a new terminal window and run the following command to start Pycharm:
+	```bash
+	pycharm-community &
+	```
+	- You will see a Welcome screen, click New Project. If you already use Pycharm and see a project open, choose File | New Project.
+	- In the location field type in the location where you cloned the repo to and choose pycharm-debugging directory. See the picture below.
+	- Do not change anything in the location for the interpreter field. It is set automatically and your new virtual environment will be called venv and located in the pycharm-debugging directory.
+	- In the field called Base interpreter choose the directory where your Python3.8 is installed. For linux this is /usr/bin/python3.8 (You can type in `which python3.8` to find the location).
+	- Deselect the Create a main.py welcome script checkbox. And click Create.
+	- It should look approximately like this ![alt-text](https://github.com/stanislav-chekmenev/debugging-dl-models/blob/master/assets/pycharm_create_new_project.png)
+	- Click Create from Existing Sources. ![alt-text](https://github.com/stanislav-chekmenev/debugging-dl-models/blob/master/assets/create_from_existing_sources.png)
+	- In the terminal inside Pycharm activate your new virtual environment. ![alt-text](https://github.com/stanislav-chekmenev/debugging-dl-models/blob/master/assets/venv_activate.png)
+	```bash
+	source venv/bin/activate
+	```
+	- And finally install all the dependencies again. It will be fast, pip will use the cached data.
+	```bash
+	pip install pip --upgarde
+	pip install -r requirments.txt
+	```
+	
+	
+	
+
+
 
 
 That should be sufficient to run everything. Thank you!
-
 
 
 
