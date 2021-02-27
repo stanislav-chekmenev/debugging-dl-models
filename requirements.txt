@@ -1,7 +1,7 @@
-absl-py==0.8.1
-numpy==1.18.0
-scipy==1.4.1
-tensorflow==2.4.0
+absl-py~=0.10
+numpy>=1.19.0
+scipy>=1.4.1
+tensorflow>=2.4.0
 jupyterlab
 matplotlib
 pandas
@@ -10,3 +10,4 @@ see-rnn
 sklearn
 tensorflow_datasets
 tensorflow_hub
+
