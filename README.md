@@ -84,8 +84,8 @@ There are several options how to do it. This one (which is a bit long, but solid
 	```
 	- And finally install all the dependencies again. It will be fast, pip will use the cached data.
 	```bash
-	pip install pip --upgarde
-	pip install -r requirments.txt
+	pip install pip --upgrade
+	pip install -r requirements.txt
 	```
 	
 	
