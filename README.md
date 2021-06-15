@@ -66,34 +66,20 @@ pip install -r requirements.txt
 	```
 
 - Create a new project and virtual environment in Pycharm:
-There are several options how to do it. This one (which is a bit long, but solid) will use a default Pycharm option with Virtualenv and is recommended to avoid further complications.
+There are several options how to do it. This is one of them.
 	- Open a new terminal window and run the following command to start Pycharm:
 	```bash
 	pycharm-community &
 	```
 	- You will see a Welcome screen, click New Project. If you already use Pycharm and see a project open, choose File | New Project.
 	- In the location field type in the location where you cloned the repo to and choose pycharm-debugging directory. See the picture below.
-	- Do not change anything in the location for the interpreter field. It is set automatically and your new virtual environment will be called venv and located in the pycharm-debugging directory.
-	- In the field called Base interpreter choose the directory where your Python3.8 is installed. For linux this is /usr/bin/python3.8 (You can type in `which python3.8` to find the location).
+	- Tick the box that is called "Previously configured interpreter" and choose the virtual environment that you created for this class, either conda or Virtualenv.
 	- Deselect the Create a main.py welcome script checkbox. And click Create.
-	- It should look approximately like this ![alt-text](https://github.com/stanislav-chekmenev/debugging-dl-models/blob/master/assets/pycharm_create_new_project.png)
-	- Click Create from Existing Sources. ![alt-text](https://github.com/stanislav-chekmenev/debugging-dl-models/blob/master/assets/create_from_existing_sources.png)
-	- In the terminal inside Pycharm activate your new virtual environment. ![alt-text](https://github.com/stanislav-chekmenev/debugging-dl-models/blob/master/assets/venv_activate.png)
+	- In the terminal inside Pycharm activate your new virtual environment.
 	```bash
-	source venv/bin/activate
-	```
-	- And finally install all the dependencies again. It will be fast, pip will use the cached data.
-	```bash
-	pip install pip --upgrade
-	pip install -r requirements.txt
+	source <path_to_venv>/bin/activate
 	```
 	
-	
-	
-
-
-
-
 That should be sufficient to run everything. Thank you!
 
 
