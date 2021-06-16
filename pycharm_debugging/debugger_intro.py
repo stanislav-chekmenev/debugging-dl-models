@@ -32,7 +32,7 @@ if __name__ == '__main__':
     print("I'm a car!")
     while True:
         action = input("What should I do? [A]ccelerate, [B]rake, "
-                 "show [O]dometer, or show average [S]peed?").upper()
+                       "show [O]dometer, or show average [S]peed?").upper()
         if action not in "ABOS" or len(action) != 1:
             print("I don't know how to do that")
             continue
