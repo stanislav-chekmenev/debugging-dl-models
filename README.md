@@ -72,13 +72,9 @@ There are several options how to do it. This is one of them.
 	pycharm-community &
 	```
 	- You will see a Welcome screen, click New Project. If you already use Pycharm and see a project open, choose File | New Project.
-	- In the location field type in the location where you cloned the repo to and choose pycharm-debugging directory. See the picture below.
+	- In the location field type in the location where you cloned the repo to and choose pycharm-debugging directory.
 	- Tick the box that is called "Previously configured interpreter" and choose the virtual environment that you created for this class, either conda or Virtualenv.
 	- Deselect the Create a main.py welcome script checkbox. And click Create.
-	- In the terminal inside Pycharm activate your new virtual environment.
-	```bash
-	source <path_to_venv>/bin/activate
-	```
 	
 That should be sufficient to run everything. Thank you!
 
