@@ -6,7 +6,6 @@ jupyterlab
 matplotlib
 pandas
 seaborn
-see-rnn
 sklearn
 tensorflow_datasets
 tensorflow_hub
