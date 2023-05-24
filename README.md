@@ -28,7 +28,7 @@ git clone https://github.com/stanislav-chekmenev/debugging-dl-models
 
 Conda:
 ```bash
-conda create --name <name> python=3.8.6
+conda create --name <name> python=3.9
 conda activate <name>
 ```
  Virtualenv:
@@ -36,15 +36,6 @@ For Ubuntu 20.04:
 ```bash
 sudo apt install virtualenv
 python3 -m venv <path/to/venv>
-source <path/to/venv>/bin/activate
-```
-For Ubuntu 18.04:
-```bash
-sudo add-apt-repository ppa:deadsnakes/ppa
-sudo apt update
-sudo apt install python3.8
-sudo apt install virtualenv
-virtualenv -p `which python3.8` <path/to/venv>
 source <path/to/venv>/bin/activate
 ```
 
