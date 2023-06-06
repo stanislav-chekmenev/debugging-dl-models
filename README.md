@@ -24,7 +24,7 @@
 git clone https://github.com/stanislav-chekmenev/debugging-dl-models
 ```
 
-- Please, create a new virtual environment with Python=3.8. Feel free to use any of your choice. I prefer Virtualenv.
+- Please, create a new virtual environment with Python=3.9. Feel free to use any of your choice. I prefer Virtualenv.
 
 Conda:
 ```bash
@@ -75,7 +75,7 @@ That should be sufficient to run everything. Thank you!
 - [Colab 0: Introduction to debugging deep learning models](https://colab.research.google.com/drive/1uZjPUJkmvbqNHJ1x0e1wnkpxWLhpInwQ)
 - [Colab 1: Implementation recipe of a bug free model](https://colab.research.google.com/drive/1GUZVMKLEr2fC4gzsExxsv_V8eIlB7JVp)
 - [Colab 2: Most common bugs I](https://colab.research.google.com/drive/1Gk62sP-k_FyWlOXXf8wW9X8ONWxd3Vsw)
-- [Colab 3: Modt common bugs II](https://colab.research.google.com/drive/1UAtYRj8Ii_mTNOuo4uW2fo0wfotIcLsn)
+- [Colab 3: Most common bugs II](https://colab.research.google.com/drive/1UAtYRj8Ii_mTNOuo4uW2fo0wfotIcLsn)
 - [Colab 4: Integrated gradients](https://colab.research.google.com/drive/1ECXdilMVHbqUmYDC6E9M5YLz_jb9zejg)
 
 
