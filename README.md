@@ -75,6 +75,5 @@ That should be sufficient to run everything. Thank you!
 - [Colab 0: Introduction to debugging deep learning models](https://colab.research.google.com/drive/1uZjPUJkmvbqNHJ1x0e1wnkpxWLhpInwQ)
 - [Colab 1: Implementation recipe of a bug free model](https://colab.research.google.com/drive/1GUZVMKLEr2fC4gzsExxsv_V8eIlB7JVp)
 - [Colab 2: Most common bugs](https://colab.research.google.com/drive/1Gk62sP-k_FyWlOXXf8wW9X8ONWxd3Vsw)
-- [Colab 4: Integrated gradients (extra material for home studies)](https://colab.research.google.com/drive/1ECXdilMVHbqUmYDC6E9M5YLz_jb9zejg)
-
+- [Colab 3: Rubber Duck Debugging with LLMs](https://colab.research.google.com/drive/1p_vf1mkhU6JZnMdrx1WYUYBg08RJ__cV?usp=drive_link)
 
