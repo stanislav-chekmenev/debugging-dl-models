@@ -142,6 +142,7 @@ pycharm_debugging/toy_modules/utils_correct.py
 pycharm_debugging/toy_modules/train_correct.py
 pycharm_debugging/toy_modules/models_correct.py
 .env
+tb_logs/*
 
 
 
