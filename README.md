@@ -26,17 +26,18 @@
 git clone https://github.com/stanislav-chekmenev/debugging-dl-models
 ```
 
-- Please, create a new virtual environment with Python=3.10. Feel free to use any of your choice. I prefer Virtualenv.
+- Please, create a new virtual environment with Python=3.10. Feel free to use any of your choice. I prefer venv.
 
 Conda:
 ```bash
 conda create --name <name> python=3.10
 conda activate <name>
 ```
- Virtualenv:
-For Ubuntu 20.04:
+ Virtual environment:
+For Ubuntu 22.04:
 ```bash
-sudo apt install virtualenv
+python3 --version # make sure you have python 3.10 installed
+sudo apt install python3-venv
 python3 -m venv <path/to/venv>
 source <path/to/venv>/bin/activate
 ```
@@ -51,26 +52,15 @@ pip install pip --upgrade
 pip install -r requirements.txt
 ```
 
-- Install PyCharam Community Edition:
-	- Follow [this](https://www.jetbrains.com/help/pycharm/installation-guide.html) manual for the installation details.
+- Install VS Code:
+	- Follow [this](https://code.visualstudio.com/docs/setup/setup-overview) link for the installation details.
 	- If you are on Linux Ubuntu starting from 16.04, then please use the following command:
 	```bash
-	sudo snap install pycharm-community --classic
+	sudo snap install --classic code
 	```
 
-- Create a new project and virtual environment in Pycharm:
-There are several options how to do it. This is one of them.
-	- Open a new terminal window and run the following command to start Pycharm:
-	```bash
-	pycharm-community &
-	```
-	- You will see a Welcome screen, click New Project. If you already use Pycharm and see a project open, choose File | New Project.
-	- In the location field type in the location where you cloned the repo to and choose pycharm-debugging directory.
-	- Tick the box that is called "Previously configured interpreter" and choose the virtual environment that you created for this class, either conda or Virtualenv.
-	- Deselect the Create a main.py welcome script checkbox. And click Create.
-	
-That should be sufficient to run everything. Thank you!
-
+- Create a new project and choose the ealier created virtual env in VS Code:
+	- Start VS Code and choose the folder for the project where you cloned the repo.
 
 ### Class material:
 
