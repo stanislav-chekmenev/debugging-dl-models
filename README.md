@@ -26,7 +26,7 @@
 git clone https://github.com/stanislav-chekmenev/debugging-dl-models
 ```
 
-- Please, create a new virtual environment with Python=3.10. Feel free to use any of your choice. I prefer venv.
+- Please, create a new virtual environment with Python=3.10 inside code_debugging directory. Feel free to use any of your choice. I prefer venv.
 
 Conda:
 ```bash
