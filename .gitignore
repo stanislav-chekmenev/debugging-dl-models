@@ -142,6 +142,7 @@ code_debugging/toy_modules/utils_correct.py
 code_debugging/toy_modules/train_correct.py
 code_debugging/toy_modules/models_correct.py
 code_debugging/venv
+plan.md
 tb_logs/*
 
 
