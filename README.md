@@ -16,7 +16,7 @@
 - [Gradient clipping](http://proceedings.mlr.press/v28/pascanu13.html): An article on gradient clipping in RNNs. 
 - [Axiomatic attribution for deep networks](https://arxiv.org/abs/1703.01365): An article about Integrated Gradients, which is a useful tool for debugging neural nets.
 - [Attribution baselines](https://distill.pub/2020/attribution-baselines/): A really well written blog post on importance of choosing a good baseline for Integrated Gradients.
-- [Teachin Large Language Models to Self-Debug](https://arxiv.org/abs/2304.05128): A paper about Rubber Duck self-debugging with LLMs.
+- [Teaching Large Language Models to Self-Debug](https://arxiv.org/abs/2304.05128): A paper about Rubber Duck self-debugging with LLMs.
 - [LangChain Docs](https://python.langchain.com/docs/get_started/introduction.html): LangChain documentation page.
 
 ### Prerequisites:
