@@ -11,7 +11,7 @@
  
 #### Some other resources, explaining notebook materials:
 - [Understanding LSTM networks](http://colah.github.io/posts/2015-08-Understanding-LSTMs/): A clear written post on LSTMs. Good for a quick overview and recalling some basics.
-- [Batch normalization explained](https://towardsdatascience.com/batch-normalization-in-neural-networks-1ac91516821c): A blog post explaining batch normalization in detail.
+- [Visualizing What Batch Normalization Is and Its Advantages](https://towardsdatascience.com/visualizing-what-batch-normalization-is-and-its-advantages-a49bbcd2fd86): A blog post explaining batch normalization in detail.
 - [See-RNN package](https://github.com/OverLordGoldDragon/see-rnn): A package that helps to visualize RNNs. Check it out if you want to dig into RNNs.
 - [Gradient clipping](http://proceedings.mlr.press/v28/pascanu13.html): An article on gradient clipping in RNNs. 
 - [Axiomatic attribution for deep networks](https://arxiv.org/abs/1703.01365): An article about Integrated Gradients, which is a useful tool for debugging neural nets.
