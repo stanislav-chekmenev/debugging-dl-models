@@ -1,11 +1,10 @@
 ### The bugs:
 
 - `float_32` instead of `float32`, `-1000` for the `n_samples`
-- shape mismatch in loss
-- learning rate too low
 - only 1 trainable layer
+- shape mismatch in the loss
 - disconnected layers
-- tanh in the first layer
+- learning rate too low
 - relu in the last layer
+- tanh in the first layer
 - shuffle according to the shape[1]
-- wrong initializer/try glorot_normal

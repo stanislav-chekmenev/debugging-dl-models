@@ -1,5 +1,5 @@
 """
-A small script for quick introduction to debugging with the PyCharm debugger.
+A small script for quick introduction to debugging with the VS code debugger.
 """
 
 class Car:

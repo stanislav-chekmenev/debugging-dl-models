@@ -26,21 +26,30 @@
 git clone https://github.com/stanislav-chekmenev/debugging-dl-models
 ```
 
-- Please, create a new virtual environment with Python=3.10 inside code_debugging directory. Feel free to use any of your choice. I prefer venv.
+- Install VS Code:
+	- Follow [this](https://code.visualstudio.com/docs/setup/setup-overview) link for the installation details.
+	- If you are on Linux Ubuntu starting from 16.04, then please use the following command:
+	```bash
+	sudo snap install --classic code
+	```
 
-Conda:
-```bash
-conda create --name <name> python=3.10
-conda activate <name>
-```
- Virtual environment:
-For Ubuntu 22.04:
-```bash
-python3 --version # make sure you have python 3.10 installed
-sudo apt install python3-venv
-python3 -m venv <path/to/venv>
-source <path/to/venv>/bin/activate
-```
+- Create a new project and a virtual environment for it:
+	- Start VS Code and choose the `project` directory as the root directory for the VS code project.
+	- Create amd activate a new virtual environment with **python 3.10** Feel free to use any virtual environment of your choice. I prefer `python3-venv` for its simplicity. It also works good with Linux. :
+
+		Conda:
+		```bash
+		conda create --name <name> python=3.10
+		conda activate <name>
+		```
+
+		Virtual environment. For Ubuntu 22.04:
+		```bash
+		python3 --version # make sure you have python 3.10 installed
+		sudo apt install python3-venv
+		python3 -m venv <path/to/venv>
+		source <path/to/venv>/bin/activate
+		```
 
 - Upgrade pip, it might be of an old version
 ```bash
@@ -51,16 +60,6 @@ pip install pip --upgrade
 ```bash
 pip install -r requirements.txt
 ```
-
-- Install VS Code:
-	- Follow [this](https://code.visualstudio.com/docs/setup/setup-overview) link for the installation details.
-	- If you are on Linux Ubuntu starting from 16.04, then please use the following command:
-	```bash
-	sudo snap install --classic code
-	```
-
-- Create a new project and choose the ealier created virtual env in VS Code:
-	- Start VS Code and choose the folder for the project where you cloned the repo.
 
 ### Class material:
 

@@ -20,8 +20,8 @@ def train(model, epochs, train_dataset, test_dataset, save_dir):
 
     for epoch in range(0, epochs + 1):
 
-        train_loss.reset_states()
-        test_loss.reset_states()
+        train_loss.reset_state()
+        test_loss.reset_state()
 
         if epoch % 10 == 0:
             print('Epoch {} is running...'.format(epoch))

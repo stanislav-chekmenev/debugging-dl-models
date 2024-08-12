@@ -32,7 +32,7 @@ def generate_datasets():
 
     # Create tf.Datasets
     train_dataset = tf.data.Dataset.from_tensor_slices((train_x, train_y)).shuffle(train_x.shape[1]).batch(32)
-    test_dataset = tf.data.Dataset.from_tensor_slices((test_x, test_y)).shuffle(test_x.shape[1]).batch(32)
+    test_dataset = tf.data.Dataset.from_tensor_slices((test_x, test_y)).batch(32)
 
     return train_dataset, test_dataset
 

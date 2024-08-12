@@ -19,6 +19,14 @@
             "program": "exercise.py",
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}"
+        },
+        {
+            "name": "Python Debugger: Exercise Correct" ,
+            "type": "debugpy",
+            "request": "launch",
+            "program": "exercise_correct.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}"
         }
     ]
 }

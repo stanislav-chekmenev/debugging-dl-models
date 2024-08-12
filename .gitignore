@@ -1,5 +1,5 @@
 # Byte-compiled / optimized / DLL files
-__pycache__/
+**/__pycache__/
 *.py[cod]
 *$py.class
 
@@ -129,21 +129,13 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# My stuff
-notebooks/basics/summaries/*
-notebooks/advanced/summaries/*
-pycharm_debugging/summaries/*
-data/*
-code_debugging/.idea/*
-live/*
-code_debugging/answers/*
-code_debugging/exercise_correct.py
-code_debugging/toy_modules/utils_correct.py
-code_debugging/toy_modules/train_correct.py
-code_debugging/toy_modules/models_correct.py
-code_debugging/venv
-plan.md
-tb_logs/*
+# Class stuff
+project/.idea/*
+project/exercise_correct.py
+project/toy_modules/utils_correct.py
+project/toy_modules/train_correct.py
+project/toy_modules/models_correct.py
+project/summaries
 
 
 

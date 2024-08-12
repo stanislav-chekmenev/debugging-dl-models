@@ -31,7 +31,7 @@ class RegressorNet(tf.keras.Model):
         )
 
         # Create network logic
-        x_input = tf.keras.Input(shape=input_shape)
+        x_input = tf.keras.Input(shape=(input_shape, ))
         x1 = x_input[:, :x_input.shape[1] // 2]
         x2 = x_input[:, x_input.shape[1] // 2:]
 
@@ -48,7 +48,8 @@ class RegressorNet(tf.keras.Model):
 
     def get_loss(self, x, y_true):
         y_pred = self(x)
-        l2_loss = tf.keras.losses.mean_squared_error(y_true, y_pred)
+        # Compute standard MSE (L2) loss
+        l2_loss = tf.math.reduce_mean(tf.math.square(y_true - y_pred))
         return l2_loss
 
     def grad_step(self, x, y_true):
