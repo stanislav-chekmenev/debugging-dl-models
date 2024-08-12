@@ -35,7 +35,7 @@ git clone https://github.com/stanislav-chekmenev/debugging-dl-models
 
 - Create a new project and a virtual environment for it:
 	- Start VS Code and choose the `project` directory as the root directory for the VS code project.
-	- Create amd activate a new virtual environment with **python 3.10** Feel free to use any virtual environment of your choice. I prefer `python3-venv` for its simplicity. It also works good with Linux. :
+	- Create and activate a new virtual environment with **python 3.10**. Feel free to use any virtual environment of your choice. I prefer `python3-venv` for its simplicity. It also works good with Linux:
 
 		Conda:
 		```bash
