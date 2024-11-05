@@ -10,7 +10,8 @@
             "request": "launch",
             "program": "debugger_intro.py",
             "console": "integratedTerminal",
-            "cwd": "${workspaceFolder}"
+            "cwd": "${workspaceFolder}",
+            "justMyCode": false
         },
         {
             "name": "Python Debugger: Exercise",
@@ -18,7 +19,8 @@
             "request": "launch",
             "program": "exercise.py",
             "console": "integratedTerminal",
-            "cwd": "${workspaceFolder}"
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true
         },
         {
             "name": "Python Debugger: Exercise Correct" ,
