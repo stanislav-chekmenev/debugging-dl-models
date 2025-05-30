@@ -5,7 +5,6 @@ from toy_modules.utils import make_writer
 
 
 def train(model, epochs, train_dataset, test_dataset, save_dir):
-
     """
     :param model: Model instance
     :param epochs: Number of epochs to train (set it to 200)
@@ -14,9 +13,9 @@ def train(model, epochs, train_dataset, test_dataset, save_dir):
     :param save_dir: Directory to save tensorboard output
     """
 
-    writer = make_writer(os.path.join('summaries'), save_dir)
-    train_loss = tf.keras.metrics.Mean(name='train_loss')
-    test_loss = tf.keras.metrics.Mean(name='test_loss')
+    writer = make_writer(os.path.join("summaries"), save_dir)
+    train_loss = tf.keras.metrics.Mean(name="train_loss")
+    test_loss = tf.keras.metrics.Mean(name="test_loss")
 
     for epoch in range(0, epochs + 1):
 
@@ -24,7 +23,7 @@ def train(model, epochs, train_dataset, test_dataset, save_dir):
         test_loss.reset_state()
 
         if epoch % 10 == 0:
-            print('Epoch {} is running...'.format(epoch))
+            print("Epoch {} is running...".format(epoch))
 
         for X, y in train_dataset:
             # Gradient update step
