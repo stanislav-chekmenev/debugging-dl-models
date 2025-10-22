@@ -1,36 +1,37 @@
 import os
-import tensorflow as tf
+import torch
 
-from toy_modules.utils import make_writer
+from toy_modules.utils_correct import make_writer
 
 
-def train(model, epochs, train_dataset, test_dataset, save_dir):
-    """
-    :param model: Model instance
-    :param epochs: Number of epochs to train (set it to 200)
-    :param train_dataset: tf.data.Datasets object for train data
-    :param test_dataset: tf.data.Datasets object for test data
-    :param save_dir: Directory to save tensorboard output
-    """
+def get_loss(y_pred, y_true):
+    l2_loss = torch.mean((y_true - y_pred) ** 2)
+    return l2_loss
 
-    writer = make_writer(os.path.join("summaries"), save_dir)
-    train_loss = tf.keras.metrics.Mean(name="train_loss")
-    test_loss = tf.keras.metrics.Mean(name="test_loss")
 
-    for epoch in range(0, epochs + 1):
+def train(model, optimizer, train_loader, test_loader, epochs, save_dir):
 
-        train_loss.reset_state()
-        test_loss.reset_state()
+    writer = make_writer(os.path.join("summary"), save_dir)
+
+    for epoch in range(epochs):
+        model.train()
+        train_loss = 0
+        test_loss = 0
 
         if epoch % 10 == 0:
             print("Epoch {} is running...".format(epoch))
 
-        for X, y in train_dataset:
-            # Gradient update step
-            loss_train, gradients = model.grad_step(X, y)
-            train_loss(loss_train)
+        for x, y in train_loader:
+            y_pred = model(x)
+            loss = get_loss(y_pred, y)
+            loss.backward()
+            optimizer.step()
+            train_loss += loss.item()
 
-        for X, y in test_dataset:
-            # Test loss calculation
-            loss_test = model.get_loss(X, y)
-            test_loss(loss_test)
+        train_epoch_loss = train_loss / len(train_loader)
+
+        for x, y in test_loader:
+            y_pred = model(x)
+            test_loss += get_loss(y_pred, y).item()
+
+        test_epoch_loss = test_loss / len(test_loader)

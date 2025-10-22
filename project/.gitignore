@@ -1,1 +1,5 @@
-summaries/
+summary/
+toy_modeules/utils_correct.py
+toy_modeules/models_correct.py
+toy_modeules/train_correct.py
+exercise_correct.py

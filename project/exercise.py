@@ -1,4 +1,4 @@
-import tensorflow as tf
+import torch
 
 from toy_modules.utils import generate_datasets
 from toy_modules.models import RegressorNet
@@ -7,11 +7,19 @@ from toy_modules.train import train
 
 if __name__ == "__main__":
 
-    # Generate datasets
-    train_dataset, test_dataset = generate_datasets()
+    train_loader, test_loader = generate_datasets()
+    in_dim = next(iter(train_loader))[0].shape[1]
 
-    # Create the model. Please, use SGD optimizer for this exercise,
-    regressor = RegressorNet(input_shape=20, optimizer=tf.keras.optimizers.SGD(learning_rate=0.001, momentum=0.9))
+    regressor = RegressorNet(in_dim=in_dim)
+    # Please, use the SGD optimizer.
+    optimizer = torch.optim.SGD(regressor.parameters(), lr=0.001, momentum=0.9)
 
-    # Train (leave the number of epochs unchanged and equal to 200)
-    train(model=regressor, epochs=200, train_dataset=train_dataset, test_dataset=test_dataset, save_dir="run1")
+    # Leave the number of epochs unchanged and equal to 200!
+    train(
+        model=regressor,
+        optimizer=optimizer,
+        train_loader=train_loader,
+        test_loader=test_loader,
+        epochs=200,
+        save_dir="all_bugs",
+    )
