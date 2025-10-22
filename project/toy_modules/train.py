@@ -30,8 +30,9 @@ def train(model, optimizer, train_loader, test_loader, epochs, save_dir):
 
         train_epoch_loss = train_loss / len(train_loader)
 
-        for x, y in test_loader:
-            y_pred = model(x)
-            test_loss += get_loss(y_pred, y).item()
+        with torch.no_grad():
+            for x, y in test_loader:
+                y_pred = model(x)
+                test_loss += get_loss(y_pred, y).item()
 
         test_epoch_loss = test_loss / len(test_loader)
