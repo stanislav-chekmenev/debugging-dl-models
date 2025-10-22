@@ -12,10 +12,7 @@
 #### Some other resources, explaining notebook materials:
 - [Understanding LSTM networks](http://colah.github.io/posts/2015-08-Understanding-LSTMs/): A clear written post on LSTMs. Good for a quick overview and recalling some basics.
 - [Visualizing What Batch Normalization Is and Its Advantages](https://towardsdatascience.com/visualizing-what-batch-normalization-is-and-its-advantages-a49bbcd2fd86): A blog post explaining batch normalization in detail.
-- [See-RNN package](https://github.com/OverLordGoldDragon/see-rnn): A package that helps to visualize RNNs. Check it out if you want to dig into RNNs.
 - [Gradient clipping](http://proceedings.mlr.press/v28/pascanu13.html): An article on gradient clipping in RNNs. 
-- [Axiomatic attribution for deep networks](https://arxiv.org/abs/1703.01365): An article about Integrated Gradients, which is a useful tool for debugging neural nets.
-- [Attribution baselines](https://distill.pub/2020/attribution-baselines/): A really well written blog post on importance of choosing a good baseline for Integrated Gradients.
 - [Teaching Large Language Models to Self-Debug](https://arxiv.org/abs/2304.05128): A paper about Rubber Duck self-debugging with LLMs.
 - [LangChain Docs](https://python.langchain.com/docs/get_started/introduction.html): LangChain documentation page.
 
@@ -35,17 +32,17 @@ git clone https://github.com/stanislav-chekmenev/debugging-dl-models
 
 - Create a new project and a virtual environment for it:
 	- Start VS Code and choose the `project` directory as the root directory for the VS code project.
-	- Create and activate a new virtual environment with **python 3.10**. Feel free to use any virtual environment of your choice. I prefer `python3-venv` for its simplicity. It also works good with Linux:
+	- Create and activate a new virtual environment with **python 3.12**. Feel free to use any virtual environment of your choice. I prefer `python3-venv` for its simplicity. It also works good with Linux:
 
 		Conda:
 		```bash
-		conda create --name <name> python=3.10
+		conda create --name <name> python=3.12
 		conda activate <name>
 		```
 
-		Virtual environment. For Ubuntu 22.04:
+		Virtual environment. For Ubuntu 24.04:
 		```bash
-		python3 --version # make sure you have python 3.10 installed
+		python3 --version # make sure you have python 3.12 installed
 		sudo apt install python3-venv
 		python3 -m venv <path/to/venv>
 		source <path/to/venv>/bin/activate
@@ -59,6 +56,7 @@ pip install pip --upgrade
 - Install requirements:
 ```bash
 pip install -r requirements.txt
+pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cpu
 ```
 
 ### Class material:
