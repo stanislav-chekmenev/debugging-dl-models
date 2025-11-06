@@ -4,8 +4,7 @@
 
 - Try running the script and check for average speed by pressing S.
 - Put a breakpoint on lines 26 and 32. Run debugger.
-- Check how the debugger shows the error message and a lightning bolt to mark the place 
-with the exception.
+- Check how the debugger shows the error message.
 - In the debugger console we can also see that self.time is 0.
 - Let's debug and change the code.
 
@@ -33,6 +32,7 @@ It will be watched and displayed there from no on.
 - Ctrl+F12 - find the definition of a function or a class highlighted by the cursor
 - Ctrl+Shift+F - search for files, classes, etc:
     - For example, type 'Dense' in classes and you can go immediately to the place where the class for keras Dense() layer is defined. 
-- Ctrl+Alt+- - move through the list of the most recent change points backwards
+- Ctrl+Alt+- - move through the list of the most recent viewed lines backwards
+- Ctrl+Shift+- - move through the list of the most recent viewed lines forward
 - F5 - run debugger for the selected script
 - Ctrl+F5 - run the selected script
