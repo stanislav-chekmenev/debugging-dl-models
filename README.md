@@ -57,7 +57,8 @@ git clone https://github.com/stanislav-chekmenev/debugging-dl-models
 	```bash
 	cd debugging-dl-models/project
 	pip install -r requirements.txt
-	pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cpu
+	pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cpu # for Linux & Windows
+	# pip install torch==2.8.0 # MacOS
 	```
 
 - Test your environment installation and check if the requirements are installed correctly, as well. Run the `test_env.py` from your project root directory that must be already set to `debugging-dl-models/project`. The script has to be run in the activated environment, so do not forget to activate your env!
